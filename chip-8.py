@@ -50,6 +50,25 @@ class Chip8:
             print(f"V{X} == {NN}")
         elif first == 0x7:
             print(f"V{X} += {NN}")
+        elif first == 0x8:
+            if NN == 0x0:
+                print(f"V{X} = V{Y}")
+            elif NN == 0x1:
+                print(f"V{X} = V{X} OR V{Y}")
+            elif NN == 0x2:
+                print(f"V{X} = V{X} AND V{Y}")
+            elif NN == 0x3:
+                print(f"V{X} = V{X} XOR V{Y}")
+            elif NN == 0x4:
+                print(f"V{X} += V{Y} (with carry)")
+            elif NN == 0x5:
+                print(f"V{X} -= V{Y}")
+            elif NN == 0x6:
+                print(f"V{X} >>= 1")
+            elif NN == 0x7:
+                print(f"V{X} = V{Y} - V{X}")
+            elif NN == 0xE:
+                print(f"V{X} <<= 1")
 
 
 
