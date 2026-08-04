@@ -47,7 +47,7 @@ class Chip8:
         elif first == 0x5:
             print(f"Skip if V{X} == V{Y}")
         elif first == 0x6:
-            print(f"V{X} == {NN}")
+            print(f"V{X} = {NN}")
         elif first == 0x7:
             print(f"V{X} += {NN}")
         elif first == 0x8:
@@ -108,6 +108,9 @@ class Chip8:
 
 chip = Chip8()
 chip.load_rom()
-opcode = chip.fetch()
-print(hex(opcode))
-chip.execute(opcode)
+i = 0
+while i < 10:
+    opcode = chip.fetch()
+    print(hex(opcode))
+    chip.execute(opcode)
+    i += 1
