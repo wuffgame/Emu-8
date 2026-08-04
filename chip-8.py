@@ -84,6 +84,25 @@ class Chip8:
                 print(f"Skip if key V{X} pressed")
             elif NN == 0xA1:
                 print(f"Skip if key V{X} not pressed")
+        elif first == 0xF:
+            if NN == 0x07:
+                print(f"V{X} = delay_timer")
+            elif NN == 0x0A:
+                print(f"Wait for key, store in V{X}")
+            elif NN == 0x15:
+                print(f"delay_timer = V{X}")
+            elif NN == 0x18:
+                print(f"sound_timer = V{X}")
+            elif NN == 0x1E:
+                print(f"I += V{X}")
+            elif NN == 0x29:
+                print(f"I = font address for V{X}")
+            elif NN == 0x33:
+                print(f"Store BCD of V{X} at I")
+            elif NN == 0x55:
+                print(f"Store V0..V{X} to memory at I")
+            elif NN == 0x65:
+                print(f"Load V0..V{X} from memory at I")
 
 
 
