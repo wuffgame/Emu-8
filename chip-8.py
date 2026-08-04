@@ -69,6 +69,16 @@ class Chip8:
                 print(f"V{X} = V{Y} - V{X}")
             elif NN == 0xE:
                 print(f"V{X} <<= 1")
+        elif first == 0x9:
+            print(f"Skip if V{X} != V{Y}")
+        elif first == 0xA:
+            print(f"I = {hex(NNN)}")
+        elif first == 0xB:
+            print(f"Jump to {hex(NNN)} + V0")
+        elif first == 0xC:
+            print(f"V{X} = random AND {NN}")
+        elif first == 0xD:
+            print(f"Draw sprite at V{X},V{Y} height {N}")
 
 
 
