@@ -34,6 +34,8 @@ class Chip8:
         if first == 0x0:
             if NN == 0xE0:
                 print("Cleaning screen!!!")
+            elif NN == 0xEE:
+                print("Return from subrotine")
 
 
 
