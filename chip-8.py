@@ -19,11 +19,19 @@ class Chip8:
         return opcode
     def decode(self, opcode):
         first = (opcode & 0xF000) >> 12
+        X = (opcode & 0x0F00) >> 8
+        Y = (opcode & 0x00F0) >> 4
+        N = (opcode & 0x000F)
+        NN = (opcode & 0x00FF)
+        NNN = (opcode & 0x0FFF)
+        return first, X, Y, N, NN, NNN
 
 
 
 chip = Chip8()
 chip.load_rom()
+chip.fetch()
 code = chip.fetch()
 print(hex(code))
-print(chip.decode(code))
+first, X , Y, N, NN, NNN = chip.decode(code)
+print(hex(first), hex(X), hex(Y), hex(N), hex(NN), hex(NNN))
