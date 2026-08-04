@@ -6,6 +6,7 @@ class Chip8:
         self.pc = 0x200
         self.register = bytearray(16)
         self.i = 0
+
     def load_rom(self):
         path = filedialog.askopenfilename()
         with open(path, "rb") as file:
@@ -13,10 +14,12 @@ class Chip8:
             start = 0x200
             end = start + len(f)
             self.memory[start:end] = f
+
     def fetch(self):
         opcode = (self.memory[self.pc] << 8) | self.memory[self.pc + 1]
         self.pc += 2
         return opcode
+
     def decode(self, opcode):
         first = (opcode & 0xF000) >> 12
         X = (opcode & 0x0F00) >> 8
@@ -26,12 +29,16 @@ class Chip8:
         NNN = (opcode & 0x0FFF)
         return first, X, Y, N, NN, NNN
 
+    def execute(self, opcode):
+        first, X, Y, N, NN, NNN = self.decode(opcode)
+        if first == 0x0:
+            if NN == 0xE0:
+                print("Cleaning screen!!!")
+
 
 
 chip = Chip8()
 chip.load_rom()
-chip.fetch()
-code = chip.fetch()
-print(hex(code))
-first, X , Y, N, NN, NNN = chip.decode(code)
-print(hex(first), hex(X), hex(Y), hex(N), hex(NN), hex(NNN))
+opcode = chip.fetch()
+print(hex(opcode))
+chip.execute(opcode)
