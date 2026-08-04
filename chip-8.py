@@ -13,11 +13,17 @@ class Chip8:
             start = 0x200
             end = start + len(f)
             self.memory[start:end] = f
-            print(hex(self.fetch()))
     def fetch(self):
         opcode = (self.memory[self.pc] << 8) | self.memory[self.pc + 1]
+        self.pc += 2
         return opcode
+    def decode(self, opcode):
+        first = (opcode & 0xF000) >> 12
+
 
 
 chip = Chip8()
 chip.load_rom()
+code = chip.fetch()
+print(hex(code))
+print(chip.decode(code))
