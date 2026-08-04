@@ -79,6 +79,11 @@ class Chip8:
             print(f"V{X} = random AND {NN}")
         elif first == 0xD:
             print(f"Draw sprite at V{X},V{Y} height {N}")
+        elif first == 0xE:
+            if NN == 0x9E:
+                print(f"Skip if key V{X} pressed")
+            elif NN == 0xA1:
+                print(f"Skip if key V{X} not pressed")
 
 
 
