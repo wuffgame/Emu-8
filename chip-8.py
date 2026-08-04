@@ -3,6 +3,9 @@ from tkinter import filedialog
 class Chip8:
     def __init__(self):
         self.memory = bytearray(4096)
+        self.pc = 0x200
+        self.register = bytearray(16)
+        self.i = 0
     def load_rom(self):
         path = filedialog.askopenfilename()
         with open(path, "rb") as file:
@@ -10,8 +13,10 @@ class Chip8:
             start = 0x200
             end = start + len(f)
             self.memory[start:end] = f
-            print(self.memory)
-            print(len(self.memory))
+            print(hex(self.fetch()))
+    def fetch(self):
+        opcode = (self.memory[self.pc] << 8) | self.memory[self.pc + 1]
+        return opcode
 
 
 chip = Chip8()
