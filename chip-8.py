@@ -47,9 +47,11 @@ class Chip8:
         elif first == 0x5:
             print(f"Skip if V{X} == V{Y}")
         elif first == 0x6:
+            self.register[X] = NN
             print(f"V{X} = {NN}")
         elif first == 0x7:
             print(f"V{X} += {NN}")
+            self.register[X] = (self.register[X] + NN) % 256
         elif first == 0x8:
             if N == 0x0:
                 print(f"V{X} = V{Y}")
