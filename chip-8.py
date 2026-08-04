@@ -36,6 +36,20 @@ class Chip8:
                 print("Cleaning screen!!!")
             elif NN == 0xEE:
                 print("Return from subrotine")
+        elif first == 0x1:
+            print(f"Jump to {hex(NNN)}")
+        elif first == 0x2:
+            print(f"Call subroutine at {hex(NNN)}")
+        elif first == 0x3:
+            print(f"Skip if V{X} == {NN}")
+        elif first == 0x4:
+            print(f"Skip if V{X} != {NN}")
+        elif first == 0x5:
+            print(f"Skip if V{X} == V{Y}")
+        elif first == 0x6:
+            print(f"V{X} == {NN}")
+        elif first == 0x7:
+            print(f"V{X} += {NN}")
 
 
 
